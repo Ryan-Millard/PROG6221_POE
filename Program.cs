@@ -12,22 +12,26 @@ namespace Program
 		{
 			PrettyConsole.Write(Console.WriteLine, ("PROG6221 POE Part 1", ConsoleColor.White, ConsoleColor.Magenta));
 
+			// long-living recipe that is only altered when a brand new recipe is made
 			var initialRecipe = CreateNewRecipe();
 			RecipePrinter.Print(initialRecipe);
 
+			// prompt user to create a new recipe, display it, scale it, or exit app
 			HandleUserInput(initialRecipe);
 		}
 
 		private static Recipe CreateNewRecipe()
+		// creates Recipe obj and returns new one
 		{
 			var recipeName = RecipePrompt.Prompt("Enter the name of the recipe: ");
-			var recipeIngredients = RecipePrompt.PromptIngredients("Enter Ingredients in the following form: name quantity unit e.g. sugar 2 spoons");
+			var recipeIngredients = RecipePrompt.PromptIngredients("Enter Ingredients in the following form: Name_Quantity_Unit (e.g. sugar_2_spoons)");
 			var recipeSteps = RecipePrompt.PromptSteps("Enter the recipe's steps: ");
 
 			return new Recipe(recipeName, recipeIngredients, recipeSteps);
 		}
 
 		private static void DisplayOptions()
+		// prompts the user to choose an option by number from the array that is printed
 		{
 			Console.WriteLine("Choose an option below:");
 			var options = new []{
@@ -43,11 +47,13 @@ namespace Program
 
 		private static void HandleUserInput(Recipe initialRecipe)
 		{
-			while (true)
+			while (true)	// app will never end until the user asks it to
 			{
+				// prompt user to choose from the menu list
 				DisplayOptions();
 				Console.Write("Enter your choice: ");
 				string userInput = Console.ReadLine()?? " ";	// non-null, but still a white space
+
 				if (string.IsNullOrWhiteSpace(userInput))
 				{
 					PrettyConsole.Write(Console.WriteLine,
@@ -58,13 +64,15 @@ namespace Program
 
 				switch (userInput)
 				{
-					case "1":
+					case "1":	// user chose to create a new recipe
 						PrettyConsole.Write(Console.WriteLine,
 							("This will overwrite the previous recipe you created. Do you wish to proceed? [y/n]: ",
 							 ConsoleColor.DarkYellow, ConsoleColor.Black));
 
+						// prompt user to decide if they want to overwrite their
+						// previously saved recipe
 						ConsoleKeyInfo keyInfo = default(ConsoleKeyInfo);
-						for(; keyInfo.KeyChar != 'y' && keyInfo.KeyChar != 'n';)
+						while(keyInfo.KeyChar != 'y' && keyInfo.KeyChar != 'n')
 							keyInfo = Console.ReadKey(intercept: true);
 
 						if (keyInfo.KeyChar == 'n')	// user chose "n" (no option)
@@ -79,21 +87,23 @@ namespace Program
 							initialRecipe = CreateNewRecipe();
 						break;
 
-					case "2":
+					case "2":	// user chose to have their recipe printed to the console
 						RecipePrinter.Print(initialRecipe);
 						break;
 
-					case "3":
-
+					case "3":	// user chose to scale the recipe
 						while(true)
 						{
 							PrettyConsole.Write(Console.Write,
 								("Enter the factor by which you would like to scale the recipe:\nScaling factor: ",
 								 ConsoleColor.Black, ConsoleColor.Gray));
 
+							// ensure the factor by which the user wants to scale is a float
 							if(float.TryParse(Console.ReadLine() ?? "", out float scaleFactor))
 							{
 								// Call the Scale method with the parsed scaling factor
+									// this method returns a new Recipe obj
+									// the new obj does not need to be saved
 								RecipePrinter.Print(initialRecipe.Scale(scaleFactor));
 								break;	// exit loop as the recipe has been successfully scaled
 							}
@@ -101,12 +111,14 @@ namespace Program
 						}
 						break;
 
-					case "4":	// exit the application
+					case "4":	// user wants to exit the application
 						PrettyConsole.Write(Console.WriteLine,
 								("Exiting application...", ConsoleColor.Red, ConsoleColor.Black));
+						// exit function to gracefully close the app
 						Environment.Exit(0);
 						break;
-					default:
+
+					default:	// user's input does not match that of the menu
 						PrettyConsole.Write(Console.WriteLine,
 								("Invalid choice. Please enter a valid option (1, 2, or 3).",
 								 ConsoleColor.Red, ConsoleColor.Black));

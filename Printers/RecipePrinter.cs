@@ -9,11 +9,13 @@ namespace Printer
 	{
 		public static void Print(Recipe recipe)
 		{
+			// destructure recipe
 			var (name, ingredients, steps) = recipe;
 			var numSteps = 0;
 			var horizontalRule = ("-------------------------------------------------------------------------\n",
 					ConsoleColor.Green, ConsoleColor.Black);
 
+			// print to array of tuples to the console
 			PrettyConsole.Write(
 				Console.WriteLine,
 

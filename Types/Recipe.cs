@@ -16,7 +16,10 @@ namespace Types.Recipe
 		}
 
 		public Recipe Scale(float scaleFactor)
+		// this function returns a new Recipe without modifying the "this" Recipe instance
 		{
+			// return a new Ingredient[] that has had it's quantity scaled
+			// by multiplying it by the scaleFactor parameter
 			var scaledIngredients = Ingredients.Select(ingredient =>
 						new Ingredient(ingredient.Name, ingredient.Quantity * scaleFactor, ingredient.Unit)
 					).ToArray();
@@ -25,6 +28,7 @@ namespace Types.Recipe
 		}
 
 		public void Deconstruct(out string name, out Ingredient[] ingredients, out string[] steps)
+		// typical function for destructuring an obj
 		{
 			name = Name;
 			ingredients = Ingredients;
