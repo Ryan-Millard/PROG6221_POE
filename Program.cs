@@ -80,6 +80,10 @@ namespace Program
 						break;
 
 					case "2":
+						RecipePrinter.Print(initialRecipe);
+						break;
+
+					case "3":
 
 						while(true)
 						{
@@ -97,7 +101,7 @@ namespace Program
 						}
 						break;
 
-					case "3":	// exit the application
+					case "4":	// exit the application
 						PrettyConsole.Write(Console.WriteLine,
 								("Exiting application...", ConsoleColor.Red, ConsoleColor.Black));
 						Environment.Exit(0);
