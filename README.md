@@ -1,5 +1,7 @@
 # PROG6221 POE
 
+# .NET Recipe Management App
+
 This repository contains a C# program for a simple recipe management system.
 
 ## Overview
@@ -21,9 +23,15 @@ To use the program, follow these steps:
   git clone git clone https://github.com/Ryan-Millard/PROG6221_POE.git
 ```
 
-3. Open the solution in Visual Studio or your preferred C# IDE.
-4. Build the solution.
-5. Run the program (`PROG6221_POE.exe`) from the command line or within the IDE.
+3. Open the solution in Visual Studio, your preferred C# IDE, or in your terminal.
+4. Build the solution either using GUI or with the .NET CLI using the following command:
+```bash
+  dotnet build
+```
+5. Run the program (`PROG6221_POE.exe`) within your IDE or from your terminal using:
+```bash
+  ./PROG6221_POE.exe
+```
 
 ## Features
 
