@@ -11,7 +11,7 @@ namespace Printer
 		{
 			var (name, ingredients, steps) = recipe;
 			var numSteps = 0;
-			var horizontalRule = ("-------------------------------------------------------------------------",
+			var horizontalRule = ("-------------------------------------------------------------------------\n",
 					ConsoleColor.Green, ConsoleColor.Black);
 
 			PrettyConsole.Write(
