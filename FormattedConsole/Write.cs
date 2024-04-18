@@ -19,8 +19,8 @@ namespace FormattedConsole
 				Console.ForegroundColor = Foreground;
 				Console.BackgroundColor = Background;
 				WriteMethod(Text ?? "");
+				Console.ResetColor(); // Reset colors after writing
 			}
-			Console.ResetColor(); // Reset colors after writing
 		}
 
 		// Method to check if the provided method is Console.Write or Console.WriteLine
