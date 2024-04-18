@@ -32,7 +32,7 @@ namespace Prompts
 
 			PrettyConsole.Write(Console.WriteLine,
 					(promptMessage, ConsoleColor.Black, ConsoleColor.Green),
-					("\nType \"DONE\" whn you are finished.", ConsoleColor.Green, ConsoleColor.Black));
+					("Type \"DONE\" when you are finished.", ConsoleColor.Green, ConsoleColor.Black));
 
 			for(int i = 1; true; i++)	// infinite until user types "DONE"
 			{
@@ -65,7 +65,7 @@ namespace Prompts
 			var inputList = new List<Ingredient>();
 			PrettyConsole.Write(Console.WriteLine,
 					(promptMessage, ConsoleColor.Black, ConsoleColor.Green),
-					("\nType \"DONE\" whn you are finished.", ConsoleColor.Green, ConsoleColor.Black));
+					("Type \"DONE\" when you are finished.", ConsoleColor.Green, ConsoleColor.Black));
 
 			for(int i = 1; true; i++)	// infinite until user types "DONE"
 			{

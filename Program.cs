@@ -31,9 +31,10 @@ namespace Program
 		{
 			Console.WriteLine("Choose an option below:");
 			var options = new []{
-				"1) Create a new recipe",
-				"2) Scale the recipe up or down",
-				"3) Exit Application (Warning - Your recipe will not be saved)"
+				"1) Create a new recipe (CAUTION)",
+				"2) Print the original recipe to the screen",
+				"3) Scale the recipe up or down, and then print it to the screen",
+				"4) Exit Application (Warning - Your recipe will not be saved)"
 			};
 
 			foreach(var option in options)
