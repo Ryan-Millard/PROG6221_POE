@@ -9,7 +9,7 @@ namespace Types.Recipe
 		public Ingredient(string name, float quantity, string unit)
 		{
 			// ensure that the quantity is a natural number
-			Quantity = (quantity <= 0)
+			Quantity = (quantity > 0)
 					? quantity
 					: throw new ArgumentOutOfRangeException("Ingredient quantity may not be less than or equal to 0 (zero).");
 			Name = name;
