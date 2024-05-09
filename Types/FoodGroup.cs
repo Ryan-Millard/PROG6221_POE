@@ -1,6 +1,6 @@
 namespace Types.Recipe
 {
-	public enum FoodGroup
+	private enum FoodGroup
 	{
 		Starchy = "starch",
 		FruitsAndVegetables = "fruits and vegetables",
