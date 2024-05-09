@@ -12,14 +12,12 @@ namespace Prompts
 		{
 			while(true)	// only ends when a valid name is entered
 			{
-				PrettyConsole.Write(Console.WriteLine, ("Enter the name of the recipe: ", ConsoleColor.Black, ConsoleColor.Green));
+				PrettyConsole.Write(Console.WriteLine, (promptMessage, ConsoleColor.Green));
 
 				var userInput = Console.ReadLine();
 				if(string.IsNullOrWhiteSpace(userInput))	// ensure truthy values
 				{
-					PrettyConsole.Write( Console.WriteLine,
-							("The recipe must have a name.",
-							 ConsoleColor.DarkRed, ConsoleColor.Black));
+					PrettyConsole.Write(Console.WriteLine, ("The recipe must have a name.", ConsoleColor.DarkRed));
 					continue;	// re-prompt the user for valid input
 				}
 
@@ -33,8 +31,8 @@ namespace Prompts
 			var inputList = new List<string>();
 
 			PrettyConsole.Write(Console.WriteLine,
-					(promptMessage, ConsoleColor.Black, ConsoleColor.Green),
-					("Type \"DONE\" when you are finished.", ConsoleColor.Green, ConsoleColor.Black));
+					(promptMessage, ConsoleColor.Green),
+					("Type \"DONE\" when you are finished.", ConsoleColor.Blue));
 
 			for(int i = 1; true; i++)	// infinite until user types "DONE"
 			{
@@ -43,7 +41,7 @@ namespace Prompts
 
 				if(string.IsNullOrWhiteSpace(nextInput))	// ensure the input is truthy
 				{
-					PrettyConsole.Write(Console.WriteLine, ("Invalid input. You must enter a step", ConsoleColor.White, ConsoleColor.DarkRed));
+					PrettyConsole.Write(Console.WriteLine, ("Invalid input. You must enter a step", ConsoleColor.White));
 					i--; continue;	// repeat & re-prompt the user for valid input
 				}
 
@@ -53,8 +51,7 @@ namespace Prompts
 						return inputList.ToArray();	// only exit when user chooses to
 
 					// user has entered nothing
-					PrettyConsole.Write(Console.WriteLine,
-							("You must enter the recipe's steps.", ConsoleColor.White, ConsoleColor.DarkRed));
+					PrettyConsole.Write(Console.WriteLine, ("You must enter the recipe's steps.", ConsoleColor.White));
 					i--; continue;	// repeat & re-prompt the user for valid input
 				}
 
@@ -66,8 +63,8 @@ namespace Prompts
 		{
 			var inputList = new List<Ingredient>();
 			PrettyConsole.Write(Console.WriteLine,
-					(promptMessage, ConsoleColor.Black, ConsoleColor.Green),
-					("Type \"DONE\" when you are finished.", ConsoleColor.Green, ConsoleColor.Black));
+					(promptMessage, ConsoleColor.Green),
+					("Type \"DONE\" when you are finished.", ConsoleColor.Blue));
 
 			for (int i = 1; true; i++) // infinite until user types "DONE"
 			{
@@ -76,9 +73,7 @@ namespace Prompts
 
 				if (string.IsNullOrWhiteSpace(nextListItem)) // ensure user input is truthy
 				{
-					PrettyConsole.Write(Console.WriteLine,
-							("Invalid input. You need to enter an ingredient.",
-							 ConsoleColor.White, ConsoleColor.DarkRed));
+					PrettyConsole.Write(Console.WriteLine, ("Invalid input. You need to enter an ingredient.", ConsoleColor.White));
 					i--;
 					continue;
 				}
@@ -89,8 +84,7 @@ namespace Prompts
 						return inputList.ToArray(); // only exit when user chooses to
 
 					// user has entered nothing
-					PrettyConsole.Write(Console.WriteLine,
-							("You must enter the recipe's ingredients.", ConsoleColor.White, ConsoleColor.DarkRed));
+					PrettyConsole.Write(Console.WriteLine, ("You must enter the recipe's ingredients.", ConsoleColor.White));
 					i--; continue; // repeat & re-prompt the user for valid input
 				}
 
@@ -103,7 +97,7 @@ namespace Prompts
 				{
 					PrettyConsole.Write(Console.WriteLine,
 							("Invalid input format. Please enter the ingredient in the following format: Name Quantity Unit",
-							 ConsoleColor.White, ConsoleColor.DarkRed));
+							 ConsoleColor.White));
 					i--;
 					continue;
 				}
@@ -112,7 +106,7 @@ namespace Prompts
 				{
 					PrettyConsole.Write(Console.WriteLine,
 							("Invalid input format. Please enter a valid quantity for the ingredient.",
-							 ConsoleColor.White, ConsoleColor.DarkRed));
+							 ConsoleColor.White));
 					i--;
 					continue;
 				}
@@ -121,7 +115,7 @@ namespace Prompts
 				{
 					PrettyConsole.Write(Console.WriteLine,
 							("Invalid input. The quantity of the ingredient must be greater than 0.",
-							 ConsoleColor.White, ConsoleColor.DarkRed));
+							 ConsoleColor.White));
 					i--;
 					continue;
 				}

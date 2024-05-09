@@ -10,7 +10,7 @@ namespace Program
 	{
 		static void Main(string[] args)
 		{
-			PrettyConsole.Write(Console.WriteLine, ("PROG6221 POE Part 1", ConsoleColor.White, ConsoleColor.Magenta));
+			PrettyConsole.Write(Console.WriteLine, ("PROG6221 POE Part 1", ConsoleColor.White));
 
 			// long-living recipe that is only altered when a brand new recipe is made
 			var initialRecipe = CreateNewRecipe();
@@ -24,7 +24,7 @@ namespace Program
 		// creates Recipe obj and returns new one
 		{
 			var recipeName = RecipePrompt.Prompt("Enter the name of the recipe: ");
-			var recipeIngredients = RecipePrompt.PromptIngredients("Enter Ingredients in the following form: Name_Quantity_Unit (e.g. sugar_2_spoons)");
+			var recipeIngredients = RecipePrompt.PromptIngredients("Enter Ingredients in the following form: Name Quantity Unit (e.g. sugar 2 spoons)");
 			var recipeSteps = RecipePrompt.PromptSteps("Enter the recipe's steps: ");
 
 			return new Recipe(recipeName, recipeIngredients, recipeSteps);
@@ -38,11 +38,11 @@ namespace Program
 				"1) Create a new recipe (CAUTION)",
 				"2) Print the original recipe to the screen",
 				"3) Scale the recipe up or down, and then print it to the screen",
-				"4) Exit Application (Warning - Your recipe will not be saved)"
+				"4) Exit Application (Warning - Your recipe will not be saved)\n"
 			};
 
 			foreach(var option in options)
-				PrettyConsole.Write(Console.WriteLine, (option, ConsoleColor.Black, ConsoleColor.Yellow));
+				PrettyConsole.Write(Console.WriteLine, (option, ConsoleColor.Magenta));
 		}
 
 		private static void HandleUserInput(Recipe initialRecipe)
@@ -58,7 +58,7 @@ namespace Program
 				{
 					PrettyConsole.Write(Console.WriteLine,
 							("Invalid input format. Please enter your choice as a number in the range 1-3.",
-							 ConsoleColor.White, ConsoleColor.DarkRed));
+							 ConsoleColor.White));
 					continue;	// re-prompt the user for valid input
 				}
 
@@ -67,7 +67,7 @@ namespace Program
 					case "1":	// user chose to create a new recipe
 						PrettyConsole.Write(Console.WriteLine,
 							("This will overwrite the previous recipe you created. Do you wish to proceed? [y/n]: ",
-							 ConsoleColor.DarkYellow, ConsoleColor.Black));
+							 ConsoleColor.DarkYellow));
 
 						// prompt user to decide if they want to overwrite their
 						// previously saved recipe
@@ -78,12 +78,12 @@ namespace Program
 						if (keyInfo.KeyChar == 'n')	// user chose "n" (no option)
 						{
 							PrettyConsole.Write(Console.WriteLine,
-								("Cancelling the process...", ConsoleColor.Black, ConsoleColor.Gray));
+								("Cancelling the process...", ConsoleColor.White));
 							break;
 						}
 
 						// user chose "y" (yes option)
-							PrettyConsole.Write(Console.WriteLine, ("Proceeding...", ConsoleColor.Black, ConsoleColor.Gray));
+							PrettyConsole.Write(Console.WriteLine, ("Proceeding...", ConsoleColor.White));
 							initialRecipe = CreateNewRecipe();
 						break;
 
@@ -96,7 +96,7 @@ namespace Program
 						{
 							PrettyConsole.Write(Console.Write,
 								("Enter the factor by which you would like to scale the recipe:\nScaling factor: ",
-								 ConsoleColor.Black, ConsoleColor.Gray));
+								 ConsoleColor.Green));
 
 							// ensure the factor by which the user wants to scale is a float
 							if(float.TryParse(Console.ReadLine() ?? "", out float scaleFactor))
@@ -104,7 +104,10 @@ namespace Program
 								// Call the Scale method with the parsed scaling factor
 									// this method returns a new Recipe obj
 									// the new obj does not need to be saved
+								PrettyConsole.Write(Console.WriteLine,
+										("\nScaled Recipe:", ConsoleColor.Blue));
 								RecipePrinter.Print(initialRecipe.Scale(scaleFactor));
+								Console.WriteLine();
 								break;	// exit loop as the recipe has been successfully scaled
 							}
 							Console.WriteLine("Invalid input! Please enter a valid scaling factor.");
@@ -113,7 +116,7 @@ namespace Program
 
 					case "4":	// user wants to exit the application
 						PrettyConsole.Write(Console.WriteLine,
-								("Exiting application...", ConsoleColor.Red, ConsoleColor.Black));
+								("Exiting application...", ConsoleColor.Red));
 						// exit function to gracefully close the app
 						Environment.Exit(0);
 						break;
@@ -121,7 +124,7 @@ namespace Program
 					default:	// user's input does not match that of the menu
 						PrettyConsole.Write(Console.WriteLine,
 								("Invalid choice. Please enter a valid option (1, 2, or 3).",
-								 ConsoleColor.Red, ConsoleColor.Black));
+								 ConsoleColor.Red));
 						break;
 				}
 			}

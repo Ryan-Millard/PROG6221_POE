@@ -8,16 +8,15 @@ namespace FormattedConsole
 		// Enhanced Console.Write that takes text segments with optional foreground and background colors
 		public static void Write(
 				Action<string> WriteMethod, // allows either Write or WriteLine to be passed
-				params (string Text, ConsoleColor Foreground, ConsoleColor Background)[] textSegments)
+				params (string Text, ConsoleColor Foreground)[] textSegments)
 		{
 			if(!IsConsoleWriteMethod(WriteMethod))
 				throw new ArgumentException("Only Console.Write or Console.WriteLine methods are allowed.");
 
-			foreach(var (Text, Foreground, Background) in textSegments)
+			foreach(var (Text, Foreground) in textSegments)
 			{
 				// set the colors and print to the console
 				Console.ForegroundColor = Foreground;
-				Console.BackgroundColor = Background;
 				WriteMethod(Text ?? "");
 				Console.ResetColor(); // Reset colors after writing
 			}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE/PROG6221_POE.csproj": {}
+    "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE - Copy/PROG6221_POE.csproj": {}
   },
   "projects": {
-    "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE/PROG6221_POE.csproj": {
+    "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE - Copy/PROG6221_POE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE/PROG6221_POE.csproj",
+        "projectUniqueName": "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE - Copy/PROG6221_POE.csproj",
         "projectName": "PROG6221_POE",
-        "projectPath": "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE/PROG6221_POE.csproj",
+        "projectPath": "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE - Copy/PROG6221_POE.csproj",
         "packagesPath": "/home/ryan/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE/obj/",
+        "outputPath": "/mnt/c/Users/Nicholas/OneDrive/Desktop/IIEMSA/Year 2/Semester 1/PROG6221(Rodney Mushininga)/PROG6221_POE - Copy/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ryan/.nuget/NuGet/NuGet.Config"

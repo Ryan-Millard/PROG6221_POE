@@ -12,25 +12,25 @@ namespace Printer
 			// destructure recipe
 			var (name, ingredients, steps) = recipe;
 			var numSteps = 0;
-			var horizontalRule = ("-------------------------------------------------------------------------\n",
-					ConsoleColor.Green, ConsoleColor.Black);
+			var horizontalRule = ("-------------------------------------------------------------------------",
+					ConsoleColor.Green);
 
 			// print to array of tuples to the console
 			PrettyConsole.Write(
 				Console.WriteLine,
 
 				horizontalRule,
-				(recipe.Name, ConsoleColor.Gray, ConsoleColor.Red),
+				(recipe.Name, ConsoleColor.Gray),
 				horizontalRule,
 
 				(string.Join("\n", ingredients.Select(ing => ing.ToString())),
-				ConsoleColor.Black, ConsoleColor.Yellow),
+				ConsoleColor.White),
 
 				(string.Join("\n", steps.Select(step => {
 							numSteps++;
 							return $"{numSteps}) {step.ToString()}";
 						})),
-				ConsoleColor.White, ConsoleColor.Blue),
+				ConsoleColor.White),
 				horizontalRule
 			);
 
