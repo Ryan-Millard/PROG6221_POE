@@ -22,11 +22,11 @@ namespace Types.Recipe
 
 		public override string ToString()
 		{
-			return $"{Name} ({Quantity} {Unit}) ({Calories} calories) ({Category}))";
+			return $"{Name} ({Quantity} {Unit}) ({Calories} calories) ({Category.GetDescription()})";
 		}
 
 		public void Deconstruct(out string name, out float quantity, out string unit,
-								out float calories, out FoodGroup Category)
+								out float calories, out FoodGroup category)
 		{
 			name = Name;
 			quantity = Quantity;

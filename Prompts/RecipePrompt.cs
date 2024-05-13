@@ -120,7 +120,7 @@ namespace Prompts
 					continue;
 				}
 
-				inputList.Add(new Ingredient(fields[0], quantity, fields[2])); // add the item to the List
+				inputList.Add(new Ingredient(fields[0], quantity, fields[2], -999, FoodGroup.Protein));
 			}
 		}
 	}
