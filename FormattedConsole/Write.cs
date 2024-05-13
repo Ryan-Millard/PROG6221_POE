@@ -5,29 +5,29 @@ namespace FormattedConsole
 {
 	public static class PrettyConsole
 	{
-		// Enhanced Console.Write that takes text segments with optional foreground and background colors
 		public static void Write(
 				Action<string> WriteMethod, // allows either Write or WriteLine to be passed
-				params (string Text, ConsoleColor Foreground)[] textSegments)
+				params(string text, ConsoleColor foreground)[] textSegments)
+		// enhanced Console.Write that takes text segments with optional foreground
 		{
 			if(!IsConsoleWriteMethod(WriteMethod))
 				throw new ArgumentException("Only Console.Write or Console.WriteLine methods are allowed.");
 
-			foreach(var (Text, Foreground) in textSegments)
+			foreach(var (text, foreground) in textSegments)
 			{
 				// set the colors and print to the console
-				Console.ForegroundColor = Foreground;
-				WriteMethod(Text ?? "");
+				Console.ForegroundColor = foreground;
+				WriteMethod(text ?? "");
 				Console.ResetColor(); // Reset colors after writing
 			}
 		}
 
-		// Method to check if the provided method is Console.Write or Console.WriteLine
 		private static bool IsConsoleWriteMethod(Action<string> method)
+		// check if provided method is Console.Write() or Console.WriteLine()
 		{
-			// reflection is used to get the method's name as a string
+			// reflection to get the method's name as a string
 			var methodInfo = method.Method;
-			// method name as a string must be either Console's Write or WriteLine
+			// method name must be Console's Write or WriteLine
 			return   methodInfo.DeclaringType == typeof(Console) &&
 					(methodInfo.Name == "Write" ||
 					 methodInfo.Name == "WriteLine");
