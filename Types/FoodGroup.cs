@@ -7,28 +7,28 @@ namespace Types.Recipe
 	public enum FoodGroup
 	{
 		[Description("starch")]
-		Starch,
+		Starch = 1,
 
 		[Description("fruits and vegetables")]
-		FruitsAndVegetables,
+		FruitsAndVegetables = 2,
 
 		[Description("legumes")]
-		Legumes,
+		Legumes = 3,
 
 		[Description("protein")]
-		Protein,
+		Protein = 4,
 
 		[Description("dairy")]
-		Dairy,
+		Dairy = 5,
 
 		[Description("fats and oil")]
-		FatsAndOil,
+		FatsAndOil = 6,
 
 		[Description("water")]
-		Water,
+		Water = 7,
 
 		[Description("other")]
-		Other
+		Other = 8
 	}
 
 	public static class FoodGroupExtensions
