@@ -21,7 +21,8 @@ namespace Types.Recipe
 			// return a new Ingredient[] that has had it's quantity scaled
 			// by multiplying it by the scaleFactor parameter
 			var scaledIngredients = Ingredients.Select(ingredient =>
-						new Ingredient(ingredient.Name, ingredient.Quantity * scaleFactor, ingredient.Unit)
+						new Ingredient(ingredient.Name, ingredient.Quantity * scaleFactor,
+								ingredient.Unit, ingredient.Calories * scaleFactor, ingredient.Category)
 					).ToArray();
 
 			return new Recipe(Name, scaledIngredients, Steps);
@@ -33,6 +34,15 @@ namespace Types.Recipe
 			name = Name;
 			ingredients = Ingredients;
 			steps = Steps;
+		}
+
+		public override string ToString()
+		{
+			var ingredientsString = string.Join("\n", Ingredients.Select(ingredient => $"\t{ingredient}"));
+
+			var stepsString = string.Join("\n", Steps.Select((step, index) => $"\t{index + 1}) {step}"));
+
+			return $"Name: {Name}\n\nIngredients:\n{ingredientsString}\n\nSteps:\n{stepsString}";
 		}
 	}
 }
