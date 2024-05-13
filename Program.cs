@@ -24,7 +24,7 @@ namespace Program
 		// creates Recipe obj and returns new one
 		{
 			var recipeName = RecipePrompt.Prompt("Enter the name of the recipe: ");
-			var recipeIngredients = RecipePrompt.PromptIngredients("Enter Ingredients in the following form: Name Quantity Unit (e.g. sugar 2 spoons)");
+			var recipeIngredients = RecipePrompt.PromptIngredients("Enter Ingredients in the following form: Name Quantity Unit Calories Food-Group-ID (e.g. steak 500 grams 300 4)");
 			var recipeSteps = RecipePrompt.PromptSteps("Enter the recipe's steps: ");
 
 			return new Recipe(recipeName, recipeIngredients, recipeSteps);

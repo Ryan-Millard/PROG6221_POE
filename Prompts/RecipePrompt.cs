@@ -8,7 +8,7 @@ namespace Prompts
 	public static class RecipePrompt
 	{
 		public static string Prompt(in string promptMessage)
-			// function that prompts user to enter the name of the recipe
+		// prompt user to enter the name of the recipe
 		{
 			while(true)	// only ends when a valid name is entered
 			{
@@ -25,7 +25,7 @@ namespace Prompts
 			}
 		}
 
-		public static string[] PromptSteps(string promptMessage)
+		public static string[] PromptSteps(in string promptMessage)
 			// prompt user to populate a List<string> named inputList and then return it as an array
 		{
 			var inputList = new List<string>();
@@ -66,19 +66,19 @@ namespace Prompts
 					(promptMessage, ConsoleColor.Green),
 					("Type \"DONE\" when you are finished.", ConsoleColor.Blue));
 
-			for (int i = 1; true; i++) // infinite until user types "DONE"
+			for(int i = 1; true; i++) // infinite until user types "DONE"
 			{
 				Console.Write($"{i}) ");
 				var nextListItem = Console.ReadLine(); // next to be .Add() to inputList
 
-				if (string.IsNullOrWhiteSpace(nextListItem)) // ensure user input is truthy
+				if(string.IsNullOrWhiteSpace(nextListItem)) // ensure user input is truthy
 				{
 					PrettyConsole.Write(Console.WriteLine, ("Invalid input. You need to enter an ingredient.", ConsoleColor.White));
 					i--;
 					continue;
 				}
 
-				if (nextListItem.ToLower() == "done") // user has finished entering Ingredients, they exit function now
+				if(nextListItem.ToLower() == "done") // user has finished entering Ingredients, they exit function now
 				{
 					if (inputList.Count > 0)
 						return inputList.ToArray(); // only exit when user chooses to
@@ -93,7 +93,7 @@ namespace Prompts
 					.Select(s => s.Trim()) // Trim each element
 					.ToArray(); // Convert to array
 
-				if (fields.Length != 3) // the user did not enter everything required for the ingredient
+				if(fields.Length != 5) // the user did not enter everything required for the ingredient
 				{
 					PrettyConsole.Write(Console.WriteLine,
 							("Invalid input format. Please enter the ingredient in the following format: Name Quantity Unit",
@@ -102,25 +102,29 @@ namespace Prompts
 					continue;
 				}
 
-				if (!float.TryParse(fields[1], out float quantity)) // ensure user inputs a float for the quantity
+				// ensure user inputs a float for the quantity & calories
+				if(!float.TryParse(fields[1], out float quantity)
+						|| !float.TryParse(fields[3], out float calories)
+						|| !float.TryParse(fields[4], out float foodGroupID))
 				{
 					PrettyConsole.Write(Console.WriteLine,
-							("Invalid input format. Please enter a valid quantity for the ingredient.",
+							("Invalid input format. Please enter a valid quantity, calories, and/or Food-Group-ID for the ingredient.",
 							 ConsoleColor.White));
 					i--;
 					continue;
 				}
 
-				if (quantity <= 0) // ensure actual values
+				// ensure actual values
+				if(quantity <= 0 || calories <= 0 || (foodGroupID < 1 || foodGroupID > 8))
 				{
 					PrettyConsole.Write(Console.WriteLine,
-							("Invalid input. The quantity of the ingredient must be greater than 0.",
+							("Invalid input. The quantity, calories, and/or Food-Group-ID of the ingredient must be greater than 0.",
 							 ConsoleColor.White));
 					i--;
 					continue;
 				}
 
-				inputList.Add(new Ingredient(fields[0], quantity, fields[2], -999, FoodGroup.Protein));
+				inputList.Add(new Ingredient(fields[0], quantity, fields[2], calories, (FoodGroup)foodGroupID));
 			}
 		}
 	}
