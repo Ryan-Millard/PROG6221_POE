@@ -64,6 +64,15 @@ namespace Prompts
 			var inputList = new List<Ingredient>();
 			PrettyConsole.Write(Console.WriteLine,
 					(promptMessage, ConsoleColor.Green),
+					("Food Group IDs:", ConsoleColor.Magenta),
+						("\tStarch: 1", ConsoleColor.Magenta),
+						("\tFruits/Vegetables: 2", ConsoleColor.Magenta),
+						("\tLegumes: 3", ConsoleColor.Magenta),
+						("\tProtein: 4", ConsoleColor.Magenta),
+						("\tDairy: 5", ConsoleColor.Magenta),
+						("\tFats/Oils: 6", ConsoleColor.Magenta),
+						("\tWater: 7", ConsoleColor.Magenta),
+						("\tOther: 8", ConsoleColor.Magenta),
 					("Type \"DONE\" when you are finished.", ConsoleColor.Blue));
 
 			for(int i = 1; true; i++) // infinite until user types "DONE"
