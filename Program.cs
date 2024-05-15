@@ -27,7 +27,14 @@ namespace Program
 			var recipeIngredients = RecipePrompt.PromptIngredients("Enter Ingredients in the following form: Name Quantity Unit Calories Food-Group-ID (e.g. steak 500 grams 300 4)");
 			var recipeSteps = RecipePrompt.PromptSteps("Enter the recipe's steps: ");
 
-			return new Recipe(recipeName, recipeIngredients, recipeSteps);
+			var recipe = new Recipe(recipeName, recipeIngredients, recipeSteps);
+
+			recipe.CaloriesExceeded += (name, totalCalories) => PrettyConsole.Write(Console.WriteLine,
+					($"Warning: The calories in {name} ({totalCalories} calories) exceed 300!",
+					 ConsoleColor.Red));
+			recipe.CheckCalories();
+
+			return recipe;
 		}
 
 		private static void DisplayOptions()
@@ -106,7 +113,13 @@ namespace Program
 									// the new obj does not need to be saved
 								PrettyConsole.Write(Console.WriteLine,
 										("\nScaled Recipe:", ConsoleColor.Blue));
-								RecipePrinter.Print(initialRecipe.Scale(scaleFactor));
+
+								var scaledRecipe = initialRecipe.Scale(scaleFactor);
+								scaledRecipe.CaloriesExceeded += (name, totalCalories) => PrettyConsole.Write(Console.WriteLine,
+										($"Warning: The calories in the scaled recipe, {name} ({totalCalories} calories), exceed 300!",
+										 ConsoleColor.Red));
+								scaledRecipe.CheckCalories();
+								RecipePrinter.Print(scaledRecipe);
 								Console.WriteLine();
 								break;	// exit loop as the recipe has been successfully scaled
 							}

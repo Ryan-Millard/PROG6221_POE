@@ -26,6 +26,8 @@ namespace Printer
 				(string.Join("\n", ingredients.Select(ing => ing.ToString())),
 				ConsoleColor.White),
 
+				horizontalRule,
+
 				(string.Join("\n", steps.Select(step => {
 							numSteps++;
 							return $"{numSteps}) {step.ToString()}";
