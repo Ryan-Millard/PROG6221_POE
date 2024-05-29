@@ -3,6 +3,7 @@ using Types.Recipe;
 using Printer;
 using Prompts;
 using FormattedConsole;
+using System.Linq;
 
 namespace Program
 {
@@ -12,12 +13,15 @@ namespace Program
 		{
 			PrettyConsole.Write(Console.WriteLine, ("PROG6221 POE Part 1", ConsoleColor.White));
 
-			// long-living recipe that is only altered when a brand new recipe is made
+			var recipeList = new SortedList<string, Recipe>(10);
 			var initialRecipe = CreateNewRecipe();
-			RecipePrinter.Print(initialRecipe);
+			recipeList.Add(initialRecipe.Name, initialRecipe);
+
+			foreach(var recipe in recipeList)
+				RecipePrinter.Print(recipe.Value);
 
 			// prompt user to create a new recipe, display it, scale it, or exit app
-			HandleUserInput(initialRecipe);
+			HandleUserInput(recipeList);
 		}
 
 		private static Recipe CreateNewRecipe()
@@ -42,9 +46,9 @@ namespace Program
 		{
 			Console.WriteLine("Choose an option below:");
 			var options = new []{
-				"1) Create a new recipe (CAUTION)",
-				"2) Print the original recipe to the screen",
-				"3) Scale the recipe up or down, and then print it to the screen",
+				"1) Create a new recipe",
+				"2) Choose a recipe and print it to the screen",
+				"3) Scale a recipe up or down, and then print it to the screen",
 				"4) Exit Application (Warning - Your recipe will not be saved)\n"
 			};
 
@@ -52,7 +56,7 @@ namespace Program
 				PrettyConsole.Write(Console.WriteLine, (option, ConsoleColor.Magenta));
 		}
 
-		private static void HandleUserInput(Recipe initialRecipe)
+		private static void HandleUserInput(SortedList<string, Recipe> recipeList)
 		{
 			while (true)	// app will never end until the user asks it to
 			{
@@ -72,37 +76,73 @@ namespace Program
 				switch (userInput)
 				{
 					case "1":	// user chose to create a new recipe
-						PrettyConsole.Write(Console.WriteLine,
-							("This will overwrite the previous recipe you created. Do you wish to proceed? [y/n]: ",
-							 ConsoleColor.DarkYellow));
-
-						// prompt user to decide if they want to overwrite their
-						// previously saved recipe
-						ConsoleKeyInfo keyInfo = default(ConsoleKeyInfo);
-						while(keyInfo.KeyChar != 'y' && keyInfo.KeyChar != 'n')
-							keyInfo = Console.ReadKey(intercept: true);
-
-						if (keyInfo.KeyChar == 'n')	// user chose "n" (no option)
-						{
-							PrettyConsole.Write(Console.WriteLine,
-								("Cancelling the process...", ConsoleColor.White));
-							break;
-						}
-
-						// user chose "y" (yes option)
-							PrettyConsole.Write(Console.WriteLine, ("Proceeding...", ConsoleColor.White));
-							initialRecipe = CreateNewRecipe();
+							var newRecipe = CreateNewRecipe();
+							recipeList.Add(newRecipe.Name, newRecipe);
 						break;
 
-					case "2":	// user chose to have their recipe printed to the console
-						RecipePrinter.Print(initialRecipe);
-						break;
-
-					case "3":	// user chose to scale the recipe
+					case "2":	// user chose to scale a recipe
 						while(true)
 						{
+							// print all recipe names to the screen for the user to choose one from
+							PrettyConsole.Write(Console.WriteLine,
+									(string.Join("\n", recipeList.Select(
+											 (recipe, index) => $"{index + 1}) {recipe.Value.Name}")),
+									 ConsoleColor.Blue));
+
+							Console.Write("Enter the number of the recipe that you would like to print: ");
+							string recipeIndexChosen = Console.ReadLine()?? " ";	// non-null, but still a white space
+							if(string.IsNullOrWhiteSpace(recipeIndexChosen))
+							{
+								PrettyConsole.Write(Console.WriteLine,
+										("Invalid input format. Please enter your choice as a number .",
+										 ConsoleColor.White));
+								continue;	// re-prompt the user for valid input
+							}
+
+							int index;
+							if(!int.TryParse(recipeIndexChosen, out index) || index < 1 || index > recipeList.Count)
+							{
+								// Handle invalid input
+								PrettyConsole.Write(Console.WriteLine, ("Invalid input format or index out of range. Please enter a valid index.", ConsoleColor.White));
+								continue;
+							}
+
+							RecipePrinter.Print(recipeList.Values[index-1]);
+							break;
+						}
+						break;
+
+					case "3":	// user chose to scale a recipe
+						while(true)
+						{
+							// print all recipe names to the screen for the user to choose one from
+							PrettyConsole.Write(Console.WriteLine,
+									(string.Join("\n", recipeList.Select(
+											 (recipe, index) => $"{index + 1}) {recipe.Value.Name}")),
+									 ConsoleColor.Blue));
+
+							Console.Write("Enter the number of the recipe that you would like to scale: ");
+							string recipeIndexChosen = Console.ReadLine()?? " ";	// non-null, but still a white space
+							if(string.IsNullOrWhiteSpace(recipeIndexChosen))
+							{
+								PrettyConsole.Write(Console.WriteLine,
+										("Invalid input format. Please enter your choice as a number .",
+										 ConsoleColor.White));
+								continue;	// re-prompt the user for valid input
+							}
+
+							int index;
+							if(!int.TryParse(recipeIndexChosen, out index) || index < 1 || index > recipeList.Count)
+							{
+								// Handle invalid input
+								PrettyConsole.Write(Console.WriteLine, ("Invalid input format or index out of range. Please enter a valid index.", ConsoleColor.White));
+								continue;
+							}
+							var recipeChosen = recipeList.Values[index-1];
+
+							// Prompt the user to enter a value to scale the recipe by
 							PrettyConsole.Write(Console.Write,
-								("Enter the factor by which you would like to scale the recipe:\nScaling factor: ",
+								("Enter the factor by which you would like to scale the recipe: ",
 								 ConsoleColor.Green));
 
 							// ensure the factor by which the user wants to scale is a float
@@ -114,7 +154,7 @@ namespace Program
 								PrettyConsole.Write(Console.WriteLine,
 										("\nScaled Recipe:", ConsoleColor.Blue));
 
-								var scaledRecipe = initialRecipe.Scale(scaleFactor);
+								var scaledRecipe = recipeChosen.Scale(scaleFactor);
 								scaledRecipe.CaloriesExceeded += (name, totalCalories) => PrettyConsole.Write(Console.WriteLine,
 										($"Warning: The calories in the scaled recipe, {name} ({totalCalories} calories), exceed 300!",
 										 ConsoleColor.Red));
