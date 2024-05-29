@@ -8,15 +8,18 @@ namespace Types.Recipe
 	{
 		public event CaloriesExceededEventHandler? CaloriesExceeded;
 
-		public string Name { get; set; }
-		public Ingredient[] Ingredients { get; set; }
-		public string[] Steps { get; set; }
+		public string Name { get; init; }
+		public Ingredient[] Ingredients { get; init; }
+		public string[] Steps { get; init; }
+		public float TotalCalories { get; init; }
 
 		public Recipe(string name, Ingredient[] ingredients, string[] steps)
 		{
 			Name = name;
 			Ingredients = ingredients;
 			Steps = steps;
+
+			TotalCalories = Ingredients.Select(ingredient => ingredient.Calories).Sum();
 		}
 
 		public Recipe Scale(float scaleFactor)
