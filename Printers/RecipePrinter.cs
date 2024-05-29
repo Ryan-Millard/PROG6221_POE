@@ -20,11 +20,12 @@ namespace Printer
 				Console.WriteLine,
 
 				horizontalRule,
+
 				(recipe.Name, ConsoleColor.Gray),
 				horizontalRule,
 
 				(string.Join("\n", ingredients.Select(ing => ing.ToString())),
-				ConsoleColor.White),
+					ConsoleColor.Gray),
 
 				horizontalRule,
 
@@ -33,6 +34,10 @@ namespace Printer
 							return $"{numSteps}) {step.ToString()}";
 						})),
 				ConsoleColor.White),
+
+				horizontalRule,
+
+				($"Total calories: {recipe.TotalCalories}", ConsoleColor.Magenta),
 				horizontalRule
 			);
 
