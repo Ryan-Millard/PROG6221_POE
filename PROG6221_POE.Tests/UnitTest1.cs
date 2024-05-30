@@ -13,8 +13,8 @@ namespace RecipeTests
 			var ingredients = new Ingredient[]
 			{
 				new Ingredient("Rice", 200, "grams", 240, FoodGroup.Starch),
-					new Ingredient("Chicken", 150, "grams", 330, FoodGroup.Protein),
-					new Ingredient("Broccoli", 100, "grams", 50, FoodGroup.FruitsAndVegetables)
+				new Ingredient("Chicken", 150, "grams", 330, FoodGroup.Protein),
+				new Ingredient("Broccoli", 100, "grams", 50, FoodGroup.FruitsAndVegetables)
 			};
 			var steps = new string[]
 			{
