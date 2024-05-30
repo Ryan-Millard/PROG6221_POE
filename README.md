@@ -8,11 +8,11 @@ This repository contains a C# program for a simple recipe management system.
 
 This program allows users to create, view, and scale recipes. It consists of the following components:
 
-- [`Program.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/Program.cs): Contains the main entry point of the program and user interaction logic.
-- [`Recipe.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/Types/Recipe.cs): Defines the `Recipe` class, representing a recipe with a name, list of ingredients, and steps. Provides methods for scaling the recipe.
-- [`Ingredient.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/Types/Ingredient.cs): Defines the `Ingredient` class, representing an ingredient with a name, quantity, and unit.
-- [`RecipePrompt.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/Prompts/RecipePrompt.cs): Contains static methods for prompting users to input recipe information, such as name, ingredients, and steps.
-- [`RecipePrinter.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/Printers/RecipePrinter.cs): Contains a struct `RecipePrinter` with a static method to print a recipe to the console.
+- [`PROG6221_POE/Program.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/PROG6221_POE/Program.cs): Contains the main entry point of the program and user interaction logic.
+- [`PROG6221_POE/Recipe.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/PROG6221_POE/Types/Recipe.cs): Defines the `Recipe` class, representing a recipe with a name, list of ingredients, and steps. Provides methods for scaling the recipe.
+- [`PROG6221_POE/Ingredient.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/PROG6221_POE/Types/Ingredient.cs): Defines the `Ingredient` class, representing an ingredient with a name, quantity, and unit.
+- [`PROG6221_POE/RecipePrompt.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/PROG6221_POE/Prompts/RecipePrompt.cs): Contains static methods for prompting users to input recipe information, such as name, ingredients, and steps.
+- [`PROG6221_POE/RecipePrinter.cs`](https://github.com/Ryan-Millard/PROG6221_POE/blob/main/PROG6221_POE/Printers/RecipePrinter.cs): Contains a struct `RecipePrinter` with a static method to print a recipe to the console.
 
 ## Usage
 
