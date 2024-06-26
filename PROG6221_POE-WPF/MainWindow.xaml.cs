@@ -44,9 +44,11 @@ namespace RecipeApp
 				}
 
 				string ingredientName = parts[0].Trim();
+				string ingredientCategory = parts[4].Trim();
+				ingredientCategory = char.ToUpper(ingredientCategory[0]) + ingredientCategory.Substring(1);
 				if (float.TryParse(parts[1].Trim(), out float quantity) &&
 						float.TryParse(parts[3].Trim(), out float calories) &&
-						Enum.TryParse(parts[4].Trim(), out FoodGroup category))
+						Enum.TryParse(ingredientCategory, out FoodGroup category))
 				{
 					string unit = parts[2].Trim();
 					ingredients.Add(new Ingredient(ingredientName, quantity, unit, calories, category));
