@@ -36,16 +36,16 @@ To add a new recipe, follow these steps:
 ### Example
 - Recipe Name: `Pancakes`
 - Ingredients:
-    Flour, 2, cups, 500, Starch
-    Milk, 1, cup, 150, Dairy
-    Egg, 2, pieces, 140, Protein
-    Sugar, 2, tablespoons, 90, Other
+    `Flour, 2, cups, 500, Starch`
+    `Milk, 1, cup, 150, Dairy`
+    `Egg, 2, pieces, 140, Protein`
+    `Sugar, 2, tablespoons, 90, Other`
 - Steps:
-    Mix all dry ingredients.
-    Add milk and eggs.
-    Stir until smooth.
-    Pour onto hot griddle.
-    Cook until golden brown.
+    `Mix all dry ingredients.`
+    `Add milk and eggs.`
+    `Stir until smooth.`
+    `Pour onto hot griddle.`
+    `Cook until golden brown.`
 
 
 ## Viewing and Scaling a Recipe
