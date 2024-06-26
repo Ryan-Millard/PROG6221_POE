@@ -155,6 +155,27 @@ namespace RecipeApp
 			FilterMaxCalories.Clear();
 			UpdateRecipesListBox();
 		}
+
+		private void ClearAllRecipesButton_Click(object sender, RoutedEventArgs e)
+		{
+			if(recipes.Count == 0) return;
+
+			MessageBoxResult result = MessageBox.Show("Are you sure that you would like to delete all saved recipes?\nOnce deleted, they will be gone forever.",
+					"Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+			if(result == MessageBoxResult.Yes)
+            {
+				recipes.Clear();
+				UpdateRecipesListBox();
+			}
+		}
+
+		private void ClearEntriesButton_Click(object sender, RoutedEventArgs e)
+		{
+			RecipeNameTextBox.Clear();
+			IngredientsTextBox.Clear();
+			StepsTextBox.Clear();
+		}
 	}
 }
 
