@@ -1,0 +1,68 @@
+﻿<Window x:Class="RecipeApp.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Recipe Manager" Height="450" Width="800">
+	<Grid Margin="10">
+		<StackPanel>
+
+			<StackPanel>
+				<TextBlock Text="Recipe Name:" />
+				<TextBox x:Name="RecipeNameTextBox" Width="200" />
+
+				<TextBlock Text="Ingredients (Name, Quantity, Unit, Calories, Starch/FruitsAndVegetables/Legumes/Protein/Dairy/FatsAndOil/Water/Other):" />
+				<TextBox x:Name="IngredientsTextBox" Width="400" Height="100" TextWrapping="Wrap" AcceptsReturn="True" />
+
+				<TextBlock Text="Steps (one per line):" />
+				<TextBox x:Name="StepsTextBox" Width="400" Height="100" TextWrapping="Wrap" AcceptsReturn="True" />
+
+				<Button Content="Add Recipe" Click="AddRecipeButton_Click" Width="100" Margin="10"/>
+			</StackPanel>
+
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="Recipes" />
+
+				<Grid Grid.Row="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width=".7*" />
+						<ColumnDefinition Width=".3*" />
+					</Grid.ColumnDefinitions>
+
+					<ListBox x:Name="RecipesListBox" SelectionChanged="RecipesListBox_SelectionChanged"/>
+
+					<Grid Grid.Column="1" Margin="10,0,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width=".3*" />
+							<ColumnDefinition Width=".7*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition />
+							<RowDefinition />
+							<RowDefinition />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+
+						<TextBlock Text="Filter:" />
+
+						<TextBlock Grid.Row="1" Text="Ingredient Name: " />
+						<TextBox Grid.Row="1" Grid.Column="1" x:Name="FilterIngredientName" Width="200" TextChanged="FilterInputsChanged"/>
+
+						<TextBlock Grid.Row="2" Text="Food Group: " />
+						<ComboBox Grid.Row="2" Grid.Column="1" x:Name="FilterFoodGroupComboBox" Width="200" SelectionChanged="FilterInputsChanged"/>
+
+						<TextBlock Grid.Row="3" Text="Maximum Calories: " />
+						<TextBox Grid.Row="3" Grid.Column="1" x:Name="FilterMaxCalories" Width="200" TextChanged="FilterInputsChanged"/>
+
+						<Button Grid.Row="4" Grid.ColumnSpan="2" Content="Clear All Filters" Click="ClearAllFiltersButton_Click" Width="200" Margin="10" HorizontalAlignment="Center"/>
+					</Grid>
+				</Grid>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</Window>
+
